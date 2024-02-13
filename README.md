@@ -40,7 +40,3 @@ O frontend inclui:
 - Tela de login
 - Listagem de Produtos
 - Detalhes do Produto
-
-
-1- Foi utilizado o comando para gerar a imagem docker da aplicação nest:
-* docker build --pull --rm -f "Dockerfile" -t menu-api:latest "."
