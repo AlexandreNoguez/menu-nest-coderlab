@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+    api:
+        container_name: nest-api
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        env_file: ./.env
+        environment:
+            - MYSQL_HOST=mysqldb
+            - MYSQL_LOCAL_PORT=${MYSQL_DOCKER_PORT}
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USERNAME=${MYSQL_USERNAME}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        ports:
+            - ${API_LOCAL_PORT}:${API_DOCKER_PORT}
+        expose:
+            - ${API_DOCKER_PORT}
+        networks:
+            - mysql
+        depends_on:
+            - db
+        stdin_open: true
+        tty: true
+
+    db:
+        container_name: mysql-db
+        image: mysql:8.0.36
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        env_file:
+            - ./.env
+        environment:
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+        ports:
+            - ${MYSQL_LOCAL_PORT}:${MYSQL_DOCKER_PORT}
+        expose:
+            - ${MYSQL_DOCKER_PORT}
+
+networks:
+    mysql:
+        driver: bridge
