@@ -10,3 +10,20 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
     entities: ['dist/**/*.entity.js'],
     // synchronize: true, // for development only
 }
+
+// class sample
+// @Injectable()
+// export class typeOrmConfig implements TypeOrmOptionsFactory {
+//     createTypeOrmOptions(): TypeOrmModuleOptions {
+//         return {
+//             type: 'mysql',
+//             host: process.env.MYSQL_HOST,
+//             port: Number(process.env.MYSQL_LOCAL_PORT),
+//             username: process.env.MYSQL_USERNAME,
+//             password: process.env.MYSQL_PASSWORD,
+//             database: process.env.MYSQL_DATABASE,
+//             entities: ['dist/**/*.entity.js'],
+//             // synchronize: true, // for development only
+//         }
+//     }
+// }
