@@ -21,7 +21,7 @@ export class User extends BaseEntity {
     @Column({ default: true })
     isActive: boolean;
 
-    static createUserWithoutPassword(user: User): User {
+    static userWithoutPassword(user: User): User {
         const newUser = new User();
         newUser.id = user.id;
         newUser.name = user.name;
