@@ -36,7 +36,7 @@ export class AuthService {
       return User.userWithoutPassword(user);
 
     } catch (error) {
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException("E-mail already registerd", HttpStatus.CONFLICT);
     }
   }
 
@@ -80,18 +80,12 @@ export class AuthService {
 
   async validateUser(signInDto: SignInDto): Promise<any> {
     const findUser = await this.usersService.findByEmail(signInDto.email);
-    console.log("findUser", findUser);
 
     if (!findUser) {
       throw new HttpException('E-mail or Password is incorrect.', HttpStatus.NOT_FOUND);
     }
 
     const matchPassword = await compare(signInDto.password, findUser.password);
-
-    console.log("matchPassword", matchPassword);
-
-
-
 
     if (!matchPassword) {
       throw new HttpException('E-mail or Password is incorrect.', HttpStatus.UNAUTHORIZED);
