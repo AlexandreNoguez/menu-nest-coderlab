@@ -27,7 +27,7 @@ export class UsersService {
 
       await this.usersRepository.save(user);
 
-      return User.createUserWithoutPassword(user);
+      return User.userWithoutPassword(user);
 
     } catch (error) {
       throw new Error('Erro ao criar o usuário: ' + error.message);
@@ -48,5 +48,19 @@ export class UsersService {
 
   remove(id: number) {
     return `This action removes a #${id} user`;
+  }
+
+  async findByEmail(email: string) {
+
+    const user = await this.usersRepository.findOne({
+      where: {
+        email,
+      }
+    })
+
+
+    const { password, ...result } = user;
+
+    return result
   }
 }
