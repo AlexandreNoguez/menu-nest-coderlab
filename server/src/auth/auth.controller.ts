@@ -9,13 +9,12 @@ import { User } from 'src/users/entities/user.entity';
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    private readonly usersService: UsersService
 
   ) { }
 
   @Post('sign-up')
   async signUp(@Body() createUserDto: CreateUserDto) {
-    return await this.usersService.create(createUserDto);
+    return await this.authService.create(createUserDto);
   }
 
   @Post('login')
