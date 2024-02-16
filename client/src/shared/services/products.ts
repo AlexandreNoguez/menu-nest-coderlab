@@ -1,7 +1,30 @@
 import { toast } from "react-toastify";
 import { api } from "./axios-config"
-import { IProductList } from "../types/IProduct";
+import { IProduct, IProductList } from "../types/IProduct";
 import { AxiosResponse } from "axios";
+
+export const createNewProduct = async (productDto: IProduct): Promise<any> => {
+    try {
+
+        const token = localStorage.getItem('token')
+        if (token) {
+            const parsedToken = JSON.parse(token);
+            console.log(parsedToken);
+
+            await api.post('/products', productDto, {
+                headers: {
+                    Authorization: `Bearer ${parsedToken.accessToken}`
+                }
+            })
+
+            return toast.success("Produto criado com sucesso!")
+        }
+
+    } catch (error) {
+        console.error(error);
+        toast.error("Falha ao criar produto");
+    }
+}
 
 export const getAllProducts = async (): Promise<IProductList> => {
     try {
