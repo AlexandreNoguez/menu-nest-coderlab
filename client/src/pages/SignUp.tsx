@@ -1,4 +1,4 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { createNewUser } from "../shared/services/auth/AuthService";
 import { IUser } from "../shared/types/IUser";
@@ -60,15 +60,6 @@ export const SignUp = () => {
                     </select>
                     {errors.role && <p className="text-red-500 text-sm">{errors.role.message}</p>}
                 </div>
-                {/* <div className="mb-4">
-                    <label htmlFor="isActive" className="block text-sm font-medium text-gray-700">Ativo</label>
-                    <input
-                        type="checkbox"
-                        id="isActive"
-                        {...register('isActive')}
-                        className="mt-1 border border-gray-300 rounded-md"
-                    />
-                </div> */}
                 <div className="flex justify-evenly mt-6 ">
                     <Link to={"/"}>
                         <button
