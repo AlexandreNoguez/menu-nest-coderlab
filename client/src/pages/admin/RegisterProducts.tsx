@@ -2,16 +2,16 @@ import { useForm } from "react-hook-form";
 import { Header } from "../../shared/components/Header";
 import { useEffect, useState } from "react";
 import { createNewProduct, getAllProducts } from "../../shared/services/products";
-import { IProduct, IProductList } from "../../shared/types/IProduct";
+import { IProduct } from "../../shared/types/IProduct";
 import { ICategoryList } from "../../shared/types/ICategory";
 import { getAllCategories } from "../../shared/services/categories";
 
 export const RegisterProcucts = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<IProduct>();
     const [chooseAction, setChooseAction] = useState<string>("");
-    const [editData, setEditData] = useState<IProductList[]>([]);
+    const [editData, setEditData] = useState<IProduct[]>([]);
     const [categories, setCategories] = useState<ICategoryList[]>([]);
-    const [productToEdit, setProductToEdit] = useState();
+    const [productToEdit, setProductToEdit] = useState<IProduct>();
 
     const onSubmit = async (data: IProduct) => {
         console.log('Dados do produto:', data);
@@ -67,7 +67,7 @@ export const RegisterProcucts = () => {
                                 {...register('name', { required: 'Este campo é obrigatório' })}
                                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                             />
-                            {/* {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>} */}
+                            {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
                         </div>
                         <div className="mb-4">
                             <label htmlFor="qty" className="block text-sm font-medium text-gray-700">
@@ -79,7 +79,7 @@ export const RegisterProcucts = () => {
                                 {...register('qty', { required: 'Este campo é obrigatório' })}
                                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                             />
-                            {/* {errors.qty && <p className="text-red-500 text-sm">{errors.qty.message}</p>} */}
+                            {errors.qty && <p className="text-red-500 text-sm">{errors.qty.message}</p>}
                         </div>
                         <div className="mb-4">
                             <label htmlFor="price" className="block text-sm font-medium text-gray-700">
@@ -91,7 +91,7 @@ export const RegisterProcucts = () => {
                                 {...register('price', { required: 'Este campo é obrigatório' })}
                                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                             />
-                            {/* {errors.price && <p className="text-red-500 text-sm">{errors.price.message}</p>} */}
+                            {errors.price && <p className="text-red-500 text-sm">{errors.price.message}</p>}
                         </div>
                         <div className="mb-4">
                             <label htmlFor="photo" className="block text-sm font-medium text-gray-700">
