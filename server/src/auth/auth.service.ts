@@ -51,12 +51,11 @@ export class AuthService {
   }> {
     try {
 
-      const user = await this.validateUser(signInDto);
+      const user: User = await this.validateUser(signInDto);
       const payload = {
         email: user.email,
-        sub: {
-          name: user.name,
-        },
+        name: user.name,
+        role: user.role,
       };
 
       return {
