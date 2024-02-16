@@ -1,15 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Category } from '../../categories/entities/category.entity';
 
-@Entity()
+@Entity('products')
 export class Product {
 
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
-
-    @ManyToMany(() => Category)
-    @JoinTable()
-    categories: Category[];
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
     name: string;
@@ -22,4 +18,7 @@ export class Product {
 
     @Column()
     photo: string;
+
+    @ManyToOne(() => Category, category => category.products)
+    category: number;
 }

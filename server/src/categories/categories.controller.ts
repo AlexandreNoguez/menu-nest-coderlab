@@ -7,9 +7,13 @@ import { UpdateCategoryDto } from './dto/update-category.dto';
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
+  /**
+   * 
+   * @returns this method is just used to populate db with some data for tests
+   */
   @Post()
-  create(@Body() createCategoryDto: CreateCategoryDto) {
-    return this.categoriesService.create(createCategoryDto);
+  create() {
+    return this.categoriesService.create();
   }
 
   @Get()
