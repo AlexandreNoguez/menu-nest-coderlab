@@ -8,6 +8,8 @@ interface IAuthContextType {
     user: IUser | null;
     login: (username: string, password: string) => void;
     logout: () => void;
+    authenticated: boolean;
+    loading: boolean;
 }
 
 interface IChildren {
@@ -22,6 +24,8 @@ export const AuthContextProvider = ({ children }: IChildren) => {
         const storedUser = localStorage.getItem('user');
         return storedUser ? JSON.parse(storedUser) : null;
     });
+    const [loading, setLoading] = useState<boolean>(true);
+
 
 
     useEffect(() => {
@@ -29,6 +33,7 @@ export const AuthContextProvider = ({ children }: IChildren) => {
         if (storedToken) {
             api.defaults.headers.Authorization = `Bearer ${storedToken}`;
         }
+        setLoading(false)
     }, []);
 
     const login = async (email: string, password: string) => {
@@ -61,7 +66,7 @@ export const AuthContextProvider = ({ children }: IChildren) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout, authenticated: !!user, loading }}>
             {children}
         </AuthContext.Provider>
     );

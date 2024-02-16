@@ -7,8 +7,10 @@ export const Header = () => {
     return (
         <header className="flex items-center justify-between px-8 bg-slate-800 h-20 gap-4">
             <div className="text-center">
+                <Link className="text-slate-200" to={"/"}>
                 <h1 className="text-xl">Cardápio Online</h1>
                 <p>Escolha sua comida favorita e solicite já!</p>
+                </Link>
             </div>
 
             <div className="flex items-center gap-4">
@@ -28,6 +30,15 @@ export const Header = () => {
                         : <button className="bg-slate-600" onClick={logout}>
                             Sair
                         </button>
+                }
+                {
+                    user?.role == "admin" ?
+                        <Link className="text-white" to={"/admin"}>
+                            <button className="bg-slate-600">
+                                Gerenciar Produtos
+                            </button>
+                        </Link>
+                        : null
                 }
 
             </div>
