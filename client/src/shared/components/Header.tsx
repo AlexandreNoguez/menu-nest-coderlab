@@ -1,8 +1,14 @@
+import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext"
 
 export const Header = () => {
     const { user, logout } = useAuth();
-    console.log(user);
+    const [loggedUser, setLoggedUser] = useState<string | undefined>("");
+
+    useEffect(() => {
+        setLoggedUser(user?.name)
+    }, [])
+    console.log(loggedUser);
 
     return (
         <header className="flex items-center justify-between px-8 bg-slate-800 h-20 gap-4">
@@ -12,7 +18,9 @@ export const Header = () => {
             </div>
 
             <div className="flex items-center gap-4">
-                <span>Olá! <strong className="user-name">{user?.name}</strong>!</span>
+                {loggedUser ?
+                    <span>Olá! <strong className="user-name">{user?.name}</strong>!</span>
+                    : null}
                 <button className="bg-slate-600" type="submit" onClick={logout}>
                     Sair
                 </button>
