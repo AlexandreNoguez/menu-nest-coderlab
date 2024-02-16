@@ -9,7 +9,7 @@ function App() {
     <div>
       <main>
         <AuthContextProvider>
-          <AppRoutes />;
+          <AppRoutes />
         </AuthContextProvider>
       </main>
       <ToastContainer />
