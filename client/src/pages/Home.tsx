@@ -10,7 +10,6 @@ export const Home = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            setIsLoading(true);
             try {
                 const data: any = await getAllProducts();
                 setProducts(data);
@@ -24,6 +23,18 @@ export const Home = () => {
         fetchData();
     }, [products.length]);
 
+    const handleAddSampleData = async () => {
+        setIsLoading(true);
+        try {
+            await addSampleData();
+            location.reload();
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <div>
             <Header />
@@ -31,7 +42,9 @@ export const Home = () => {
             <ul className="flex flex-wrap items-center justify-center">
                 {
                     !products || !products.length ? (
-                        <button className="mt-16" onClick={() => addSampleData()}>Adicionar Dados Iniciais</button>
+                        <button disabled={isLoading} className="mt-16" onClick={() => handleAddSampleData()}>
+                            {isLoading ? "Carregando..." : "Adicionar Dados Iniciais"}
+                        </button>
                     ) : null
                 }
                 {
