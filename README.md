@@ -48,10 +48,25 @@ O frontend inclui:
 
 ### Para executar o projeto:
 1. Clonar o reposiótio `git clone https://github.com/AlexandreNoguez/menu-nest-react-coderlab`
-2. Acesse o diretório do projeto `cd menu-nest-react-coderlab`
-3. Execute o comando `docker-compose up -d`
-4. Acesse a pasta server `cd server`
-5. Execute o comando `npm run dev`
-6. Quando terminar de executar todos os serviços pode ser acessado no navegador <a href="http://localhost:5173">localhost</a>
+2. Renomear o arquivo `.env.example` para `.env`
+3. Acesse o diretório do projeto `cd menu-nest-react-coderlab`
+4. Execute o comando `docker-compose up -d`
+5. Acesse a pasta server `cd server`
+6. Execute o comando `npm run dev`
+7. Quando terminar de executar todos os serviços pode ser acessado no navegador <a href="http://localhost:5173">localhost</a>
 
+## Desafios futuros!!
 
+### Frontend
+<ol>
+  <li>Adicionar Yup ou alguma outra lib para validar e retornar os erros do formulário para o usuário.</li>
+  <li>Finalizar edição de produtos.</li>
+  <li>Finalizar exclusão de produtos.</li>
+</ol>
+
+### Backend
+<ol>
+  <li>Automatizar migrations para criação de novas tabelas.</li>
+  <li>Desabilitar o sync para publicar o app.</li>
+  <li>Finalizar conexão da API com o Banco de Dados no docker-compose.</li>
+</ol>
