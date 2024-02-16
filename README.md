@@ -8,17 +8,16 @@ Este projeto foi um desafio técnico para uma vaga full stack e   onsiste em uma
   - Node.js
   - NestJS
   - MySQL
-  <!-- - TypeORM -->
+  - TypeORM
 
 - Frontend:
   - React(Vite)
   - React Router DOM
   - Tailwindcss
+  - react-hook-form
 
 - Ferramentas Adicionais:
   - Docker
-
-## Requisitos
 
 ### Backend
 
@@ -39,4 +38,19 @@ O backend oferece os seguintes endpoints:
 O frontend inclui:
 - Tela de login
 - Listagem de Produtos
+- Gerenciar Produtos (Adicionar, Editar, Remover)
 - Detalhes do Produto
+
+### Notas
+- É necessário ter o docker instalado
+- É necessário ter o nodejs instalado
+
+### Para executar o projeto:
+1. Clonar o reposiótio `git clone https://github.com/AlexandreNoguez/menu-nest-react-coderlab`
+2. Acesse o diretório do projeto `cd menu-nest-react-coderlab`
+3. Execute o comando `docker-compose up -d`
+4. Acesse a pasta server `cd server`
+5. Execute o comando `npm run dev`
+6. Quando terminar de executar todos os serviços pode ser acessado no navegador <a href="http://localhost:5173">localhost</a>
+
+
