@@ -62,7 +62,7 @@ export const Login = () => {
                 <span>
                     Ainda não possui cadastro?{" "}
                     <strong>
-                        <Link to="/cadastro">CADASTRE-SE</Link>
+                        <Link to="/auth/sign-up">CADASTRE-SE</Link>
                     </strong>
                 </span>
             </form>

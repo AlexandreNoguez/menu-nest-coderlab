@@ -4,6 +4,7 @@ import { Home } from '../pages/Home'
 import { useAuth } from '../shared/contexts/AuthContext';
 import { RegisterProcucts } from '../pages/admin/RegisterProducts';
 import { ReactNode } from 'react';
+import { SignUp } from '../pages/SignUp';
 
 interface IChildren {
     children: ReactNode
@@ -26,6 +27,7 @@ export const AppRoutes = () => {
         <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/auth/login' element={<Login />} />
+            <Route path='/auth/sign-up' element={<SignUp />} />
             <Route path='*' element={<Home />} />
             <Route
                 path="/admin"
