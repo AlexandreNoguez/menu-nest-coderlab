@@ -2,9 +2,10 @@ import { createContext, useState, useContext, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../services/axios-config';
 import { toast } from 'react-toastify';
+import { IUser } from '../types/IUser';
 
 interface IAuthContextType {
-    user: string | null;
+    user: IUser | null;
     login: (username: string, password: string) => void;
     logout: () => void;
 }
@@ -17,13 +18,12 @@ const AuthContext = createContext<IAuthContextType | undefined>(undefined);
 
 export const AuthContextProvider = ({ children }: IChildren) => {
     const navigate = useNavigate();
-    const [user, setUser] = useState<string | null>(null);
+    const [user, setUser] = useState<IUser | null>(null);
 
     const login = async (email: string, password: string) => {
         try {
             const response = await api.post("/auth/login", { email, password })
 
-            console.log("response.data", response);
             const { user, token } = response.data;
 
             localStorage.setItem("user", JSON.stringify(user));
@@ -40,7 +40,11 @@ export const AuthContextProvider = ({ children }: IChildren) => {
     };
 
     const logout = () => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
         setUser(null);
+
+        navigate('/auth/login')
     };
 
     return (
