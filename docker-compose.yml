@@ -13,34 +13,35 @@ services:
             - ./client:/app
         networks:
             - menu-app
-        depends_on:
-            - api
+        # depends_on:
+        #     - api
         restart: unless-stopped
-    api:
-        container_name: nest-api
-        build:
-            context: ./server
-            dockerfile: Dockerfile
-        image: nest-api
-        ports:
-            - ${API_LOCAL_PORT}:${API_DOCKER_PORT}
-        restart: unless-stopped
-        volumes:
-            - ./server:/app
-        env_file:
-            - ./.env
-        environment:
-            - MYSQL_HOST=${MYSQL_HOST}
-            - MYSQL_LOCAL_PORT=${MYSQL_LOCAL_PORT}
-            - MYSQL_DATABASE=${MYSQL_DATABASE}
-            - MYSQL_USERNAME=${MYSQL_USERNAME}
-            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-        networks:
-            - menu-app
-        depends_on:
-            - db
-        stdin_open: true
-        tty: true
+
+    # api:
+    #     container_name: nest-api
+    #     build:
+    #         context: ./server
+    #         dockerfile: Dockerfile
+    #     image: nest-api
+    #     ports:
+    #         - ${API_LOCAL_PORT}:${API_DOCKER_PORT}
+    #     restart: unless-stopped
+    #     volumes:
+    #         - ./server:/app
+    #     env_file:
+    #         - ./.env
+    #     environment:
+    #         - MYSQL_HOST=${MYSQL_HOST}
+    #         - MYSQL_LOCAL_PORT=${MYSQL_LOCAL_PORT}
+    #         - MYSQL_DATABASE=${MYSQL_DATABASE}
+    #         - MYSQL_USERNAME=${MYSQL_USERNAME}
+    #         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    #     networks:
+    #         - menu-app
+    #     depends_on:
+    #         - db
+    #     stdin_open: true
+    #     tty: true
 
     db:
         container_name: mysql-db
