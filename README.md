@@ -44,6 +44,7 @@ O frontend inclui:
 ### Notas
 - É necessário ter o docker instalado
 - É necessário ter o nodejs instalado
+- O arquivo CoderLabAPI tem todas as chamadas na API utilizando o Insomnia
 
 ### Para executar o projeto:
 1. Clonar o reposiótio `git clone https://github.com/AlexandreNoguez/menu-nest-react-coderlab`
