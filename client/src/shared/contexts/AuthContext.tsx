@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, ReactNode } from 'react';
+import { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../services/axios-config';
 import { toast } from 'react-toastify';
@@ -18,7 +18,18 @@ const AuthContext = createContext<IAuthContextType | undefined>(undefined);
 
 export const AuthContextProvider = ({ children }: IChildren) => {
     const navigate = useNavigate();
-    const [user, setUser] = useState<IUser | null>(null);
+    const [user, setUser] = useState<IUser | null>(() => {
+        const storedUser = localStorage.getItem('user');
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem('token');
+        if (storedToken) {
+            api.defaults.headers.Authorization = `Bearer ${storedToken}`;
+        }
+    }, []);
 
     const login = async (email: string, password: string) => {
         try {
@@ -38,6 +49,8 @@ export const AuthContextProvider = ({ children }: IChildren) => {
             return toast.error("Usuário ou senha inválido.")
         }
     };
+
+
 
     const logout = () => {
         localStorage.removeItem("user");
