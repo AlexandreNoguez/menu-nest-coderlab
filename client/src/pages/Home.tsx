@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Header } from "../shared/components/Header"
 import { addSampleData, getAllProducts } from "../shared/services/products"
-import { IProduct, IProductList } from "../shared/types/IProduct";
+import { IProductList } from "../shared/types/IProduct";
 import { ProductCard } from "../shared/components/ProductCard";
 
 export const Home = () => {
@@ -12,7 +12,7 @@ export const Home = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const data = await getAllProducts();
+                const data: any = await getAllProducts();
                 setProducts(data);
             } catch (error) {
                 console.error(error);
@@ -23,9 +23,6 @@ export const Home = () => {
 
         fetchData();
     }, [products.length]);
-
-    // console.log("products", products);
-
 
     return (
         <div>
