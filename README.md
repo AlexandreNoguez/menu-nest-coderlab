@@ -45,36 +45,63 @@ O frontend inclui:
 - É necessário ter o docker instalado
 - É necessário ter o nodejs instalado
 - O arquivo CoderLabAPI tem todas as chamadas na API utilizando o Insomnia
+- Devido a falha de reprodução em outras máquinas e sistemas operacionais, removi os serviços client e api do docker compose
+- Subi os arquivos .env com as variáveis de ambiente configuradas para fins de facilitar o teste do aplicativo
 
 ### Para executar o projeto:
 1. Clonar o reposiótio 
 ```bash 
 git clone https://github.com/AlexandreNoguez/menu-nest-react-coderlab
 ```
+
 2. Acesse o diretório do projeto 
 ```bash
 cd menu-nest-react-coderlab
 ```
+
 3. Execute o comando 
 ```bash 
 docker-compose up -d
 ```
-4. Acesse a pasta server 
+
+4. Acesse a pasta client 
 ```bash 
-cd server
+cd client
 ```
-5. Execute o compando para baixar as dependências
+
+5. Execute o comando para baixar as dependências
 ```bash 
 npm install
 ``` 
 
-6. Execute o servidor 
+6. Execute o client 
 ```bash
 npm run dev
 ```
-7. Quando terminar de executar todos os serviços, o projeto pode ser acessado no navegador <a href="http://localhost:5173">localhost</a>
 
-## Desafios futuros!!
+7. Volte uma pasta 
+```bash
+cd ..
+```
+
+8. Acesse a pasta server 
+```bash 
+cd server
+```
+
+9. Execute o compando para baixar as dependências
+```bash 
+npm install
+``` 
+
+10. Execute o servidor 
+```bash
+npm run dev
+```
+
+11. Quando terminar de executar todos os serviços, o projeto pode ser acessado no navegador <a href="http://localhost:5173">localhost</a>
+
+## Melhorias futuras!!
 
 ### Frontend
 <ol>
@@ -85,6 +112,7 @@ npm run dev
 
 ### Backend
 <ol>
+  <li>Configurar os containers para executar, installar e expor as portas corretas.</li>
   <li>Automatizar migrations para criação de novas tabelas.</li>
   <li>Desabilitar o sync para publicar o app.</li>
   <li>Finalizar conexão da API com o Banco de Dados no docker-compose.</li>
