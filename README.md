@@ -79,27 +79,22 @@ npm install
 npm run dev
 ```
 
-7. Volte uma pasta 
-```bash
-cd ..
-```
-
-8. Acesse a pasta server 
+7. Em outro terminal, acesse a pasta server 
 ```bash 
 cd server
 ```
 
-9. Execute o compando para baixar as dependências
+8. Execute o compando para baixar as dependências
 ```bash 
 npm install
 ``` 
 
-10. Execute o servidor 
+9. Execute o servidor 
 ```bash
 npm run dev
 ```
 
-11. Quando terminar de executar todos os serviços, o projeto pode ser acessado no navegador <a href="http://localhost:5173">localhost</a>
+10. Quando terminar de executar todos os serviços, o projeto pode ser acessado no navegador <a href="http://localhost:5173">localhost</a>
 
 ## Melhorias futuras!!
 
