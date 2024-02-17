@@ -7,14 +7,13 @@ import { useAuth } from "../shared/contexts/AuthContext";
 export const Login = () => {
     const { login } = useAuth();
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<ILogin>();
+    const { register, handleSubmit, formState: { errors } } = useForm<ILogin>();
     const [error, setError] = useState<string | null>(null);
 
-    const onSubmit = async (data: ILogin) => {
+    const onSubmit = (data: ILogin) => {
         try {
 
-            const response = await login(data.email, data.password);
-
+            login(data.email, data.password);
 
         } catch (error) {
             setError("Falha ao fazer login. Verifique suas credenciais.");
