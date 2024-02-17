@@ -1,48 +1,6 @@
 version: '3.8'
 
 services:
-    client:
-        container_name: vite-client
-        build:
-            context: ./client
-            dockerfile: Dockerfile
-        image: vite-client
-        ports:
-            - ${VITE_LOCAL_PORT}:${VITE_DOCKER_PORT}
-        volumes:
-            - ./client:/app
-        networks:
-            - menu-app
-        # depends_on:
-        #     - api
-        restart: unless-stopped
-
-    # api:
-    #     container_name: nest-api
-    #     build:
-    #         context: ./server
-    #         dockerfile: Dockerfile
-    #     image: nest-api
-    #     ports:
-    #         - ${API_LOCAL_PORT}:${API_DOCKER_PORT}
-    #     restart: unless-stopped
-    #     volumes:
-    #         - ./server:/app
-    #     env_file:
-    #         - ./.env
-    #     environment:
-    #         - MYSQL_HOST=${MYSQL_HOST}
-    #         - MYSQL_LOCAL_PORT=${MYSQL_LOCAL_PORT}
-    #         - MYSQL_DATABASE=${MYSQL_DATABASE}
-    #         - MYSQL_USERNAME=${MYSQL_USERNAME}
-    #         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-    #     networks:
-    #         - menu-app
-    #     depends_on:
-    #         - db
-    #     stdin_open: true
-    #     tty: true
-
     db:
         container_name: mysql-db
         image: mysql:8.0.36
@@ -53,11 +11,7 @@ services:
         environment:
             MYSQL_DATABASE: ${MYSQL_DATABASE}
             MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-        networks:
-            - menu-app
         ports:
             - ${MYSQL_LOCAL_PORT}:${MYSQL_DOCKER_PORT}
 
-networks:
-    menu-app:
-        driver: bridge
+
