@@ -84,7 +84,7 @@ npm run dev
 cd server
 ```
 
-8. Execute o compando para baixar as dependências
+8. Execute o comando para baixar as dependências
 ```bash 
 npm install
 ``` 
